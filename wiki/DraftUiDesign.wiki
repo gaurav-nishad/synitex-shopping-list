@@ -1,4 +1,3 @@
-#summary Very draft UI design + use cases.
 #labels Featured
 
 = Darft UI design =
