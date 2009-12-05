@@ -1,0 +1,6 @@
+#summary Very draft UI design + use cases.
+
+= Darft UI design =
+
+
+<a href="http://picasaweb.google.com/lh/photo/4aXAFhR4SXTM55nHptLfYg?feat=embedwebsite"><img src="http://lh3.ggpht.com/_mZJ-Ff-NRdg/SxpOFcHTHrI/AAAAAAAAAKo/8iFVteBBDC8/s800/shopping-list-ui-draft1.jpg" /></a>
