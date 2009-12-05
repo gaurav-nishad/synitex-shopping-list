@@ -1,0 +1,3 @@
+#summary The documentation center of Shopping List application.
+
+= Shopping List Documentation =
