@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:orientation="vertical">
+  
+	<EditText 
+	    android:hint="Item name..."
+	    android:singleLine="true"
+	    android:id="@+id/FldName"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content">
+	</EditText>
+	<EditText 
+	    android:hint="Price..."
+	    android:singleLine="true"
+	    android:inputType="numberDecimal"
+	    android:id="@+id/FldPrice"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content">
+	</EditText>
+	
+	
+	<LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+        
+        <ImageView
+            android:src="@drawable/big"
+            android:adjustViewBounds="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside" 
+            android:layout_weight="1.0"
+        />
+  
+	    <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal">
+	    
+	        <ImageButton
+	            android:id="@+id/BtnCancelCreateNewItem"
+	            android:src="@drawable/cancel"
+	            android:layout_weight="1"
+	            android:layout_height="wrap_content"
+	            android:layout_width="fill_parent"
+	         />
+	         
+	         <ImageButton
+	            android:id="@+id/BtnOkCreateNewItem"
+	            android:src="@drawable/ok"
+	            android:layout_weight="1"
+	            android:layout_height="wrap_content"
+	            android:layout_width="fill_parent"
+	         />
+	        
+	    </LinearLayout>
+	    
+	 </LinearLayout>
+	 
+</LinearLayout>
