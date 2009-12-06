@@ -17,7 +17,9 @@ User must be able to specify good name and picture of good.
 Add name is easy - just textbox. But picture can be selected by many ways:
 
 * select image from media library;
+
 * take a photo;
+
 * search on the web (at the flickr for example).
 
 Ideally we need all those possibilities. But for now I think it is ok
@@ -46,5 +48,3 @@ Also user can apply some sorting for goods:
 * by type or category (food, electro, garden).
 
 And, of course, user can perform quick search by name.  
-
-
