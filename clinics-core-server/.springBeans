@@ -5,8 +5,10 @@
 	<configSuffixes>
 		<configSuffix><![CDATA[xml]]></configSuffix>
 	</configSuffixes>
-	<enableImports><![CDATA[false]]></enableImports>
+	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
+		<config>src/main/resources/spring/clinics-core-app-context.xml</config>
+		<config>src/main/resources/spring/clinics-core-hibernate.xml</config>
 	</configs>
 	<configSets>
 	</configSets>
