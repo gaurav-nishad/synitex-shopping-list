@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 /**
- * Base class for oll the entities in the open clinics core project
+ * Base class for all the entities in the open clinics core project
  * 
  * @author Leonids M<leonidms@gmail.com>
  * 
