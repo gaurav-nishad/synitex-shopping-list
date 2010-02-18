@@ -11,8 +11,7 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-    <import resource="classpath*:spring/clinics-core-hibernate.xml" />
-    <import resource="classpath*:spring/clinics-core-app-context.xml" />
-    
+    <import resource="classpath:spring/clinics-core-hibernate.xml" />
+    <import resource="classpath:spring/clinics-core-app-context.xml" />
     
 </beans>

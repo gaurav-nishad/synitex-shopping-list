@@ -4,6 +4,8 @@ import java.util.Collection;
 
 import org.springframework.orm.ObjectRetrievalFailureException;
 
+import com.clinics.core.api.entities.OcEntity;
+
 /**
  * Utility methods for handling entities. Separate from the BaseEntity class mainly because of dependency on the
  * ORM-associated ObjectRetrievalFailureException.
@@ -11,7 +13,7 @@ import org.springframework.orm.ObjectRetrievalFailureException;
  * @author Juergen Hoeller
  * @author Sam Brannen
  * @since 29.10.2003
- * @see org.springframework.samples.petclinic.BaseEntity
+ * @see OcEntity
  */
 public abstract class EntityUtils {
 
@@ -28,18 +30,15 @@ public abstract class EntityUtils {
      * @throws ObjectRetrievalFailureException
      *             if the entity was not found
      */
-    public static <T> T getById(Collection<T> entities, Class<? extends T> entityClass, int entityId)
+    public static <T extends OcEntity> T getById(Collection<T> entities, Class<? extends T> entityClass, int entityId)
             throws ObjectRetrievalFailureException {
         for (final T entity : entities) {
             if (entity == null) {
                 continue;
             }
-            Number numberId;
-            try {
-                numberId = (Number) entity.getClass().getMethod("getId").invoke(entity);
-            } catch (final Exception e) {
-                throw new ObjectRetrievalFailureException("Coud not obtain Id", e);
-            }
+
+            final Number numberId = entity.getId();
+
             if (numberId != null && numberId.intValue() == entityId && entityClass.isInstance(entity)) {
                 return entity;
             }

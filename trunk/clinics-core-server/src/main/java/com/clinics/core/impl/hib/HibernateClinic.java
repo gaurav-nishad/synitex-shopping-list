@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.clinics.core.api.entities.OcEntity;
+
 /**
  * Hibernate implementation of the Clinic interface.
  * 
@@ -26,18 +28,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class HibernateClinic {
-
     @Autowired
     private SessionFactory sessionFactory;
 
+    public HibernateClinic() {
+        System.out.println("aa");
+    }
+
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
-    public Collection<Object> findOwners(String lastName) {
-        return sessionFactory.getCurrentSession().createQuery("from Owner owner where owner.lastName like :lastName").setString(
+    public Collection<OcEntity> findOwners(String lastName) {
+        return sessionFactory.getCurrentSession().createQuery("from Employee owner where owner.lastName like :lastName").setString(
                 "lastName", lastName + "%").list();
     }
 
-    public void storeOwner(Object owner) {
+    public void storeOwner(OcEntity owner) {
         // Note: Hibernate3's merge operation does not reassociate the object
         // with the current Hibernate Session. Instead, it will always copy the
         // state over to a registered representation of the entity. In case of a
