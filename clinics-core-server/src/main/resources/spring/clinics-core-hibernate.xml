@@ -30,8 +30,8 @@
 	-->
 
   <!-- Hibernate SessionFactory -->
-  <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean" p:dataSource-ref="dataSource"
-    p:configurationClass="org.hibernate.cfg.AnnotationConfiguration">
+  <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+    p:dataSource-ref="dataSource">
     <property name="hibernateProperties">
       <props>
         <prop key="hibernate.dialect">${hibernate.dialect}</prop>
@@ -39,6 +39,11 @@
         <prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
       </props>
     </property>
+
+    <property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" />
+
+    <property name="packagesToScan" value="com.clinics.core.api.entities" />
+
     <property name="eventListeners">
       <map>
         <entry key="merge">
@@ -47,6 +52,7 @@
       </map>
     </property>
   </bean>
+
 
   <!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
   <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager"
@@ -77,8 +83,5 @@
     as JMX object name.
   -->
   <context:mbean-export />
-
-  <!-- Hibernate's JMX statistics service -->
-  <bean name="clinics:type=HibernateStatistics" class="org.hibernate.jmx.StatisticsService" autowire="byName" />
 
 </beans>
