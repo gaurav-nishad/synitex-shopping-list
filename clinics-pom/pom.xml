@@ -42,7 +42,7 @@
 	</repositories>
 
 	<properties>
-	    <gwt.version>2.0.2</gwt.version>
+		<gwt.version>2.0.2</gwt.version>
 		<spring.version>2.5.6.SEC01</spring.version>
 		<junit.version>4.4</junit.version>
 		<commons-dbcp.version>1.2.2</commons-dbcp.version>
@@ -57,16 +57,32 @@
 		<dependencies>
 
 			<dependency>
+				<groupId>com.clinics</groupId>
+				<artifactId>clinics-gwt-shared</artifactId>
+				<version>${pom.version}</version>
+			</dependency>
+			<dependency>
+                <groupId>com.clinics</groupId>
+                <artifactId>clinics-gwt-server</artifactId>
+                <version>${pom.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.clinics</groupId>
+                <artifactId>clinics-core-server</artifactId>
+                <version>${pom.version}</version>
+            </dependency>
+
+			<dependency>
 				<groupId>com.google.gwt</groupId>
 				<artifactId>gwt-dev</artifactId>
 				<version>${gwt.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
-                <groupId>com.google.gwt</groupId>
-                <artifactId>gwt-servlet</artifactId>
-                <version>${gwt.version}</version>
-            </dependency>
+				<groupId>com.google.gwt</groupId>
+				<artifactId>gwt-servlet</artifactId>
+				<version>${gwt.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>com.google.gwt</groupId>
 				<artifactId>gwt-user</artifactId>
@@ -197,6 +213,8 @@
 
 	<modules>
 		<module>../clinics-core-server</module>
+		<module>../clinics-gwt-shared</module>
+		<module>../clinics-gwt-server</module>
 		<module>../clinics-gwt-client</module>
 	</modules>
 
