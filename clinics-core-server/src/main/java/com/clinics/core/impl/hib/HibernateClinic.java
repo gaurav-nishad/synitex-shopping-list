@@ -38,7 +38,7 @@ public class HibernateClinic {
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
     public Collection<OcEntity> findOwners(String lastName) {
-        return sessionFactory.getCurrentSession().createQuery("from Employee owner where owner.lastName like :lastName").setString(
+        return sessionFactory.getCurrentSession().createQuery("from Person owner where owner.lastName like :lastName").setString(
                 "lastName", lastName + "%").list();
     }
 
