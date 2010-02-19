@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+  
+  
+  
+  <servlet>
+    <servlet-name>notesServlet</servlet-name>
+    <servlet-class>com.synitex.mn.server.MeetingNotesServiceImpl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>notesServlet</servlet-name>
+    <url-pattern>/meetingnotes/notes</url-pattern>
+  </servlet-mapping>
+ 
+  
+  <filter>
+    <filter-name>loginFilter</filter-name>
+    <filter-class>com.synitex.mn.server.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>loginFilter</filter-name>
+    <url-pattern>/meetingnotes/*</url-pattern>
+  </filter-mapping>
+  
+  
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>MeetingNotes.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

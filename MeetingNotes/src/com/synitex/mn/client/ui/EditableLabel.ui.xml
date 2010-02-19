@@ -1,0 +1,30 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.hp {
+			width: 100%;
+		}
+		
+		.lbl {
+			font-size: 13px;
+			font-weight: bold;
+			padding: 2px;
+			color: white;
+		}
+		
+		.txt {
+			font-size: 13px;
+			font-weight: bold;
+			border: none;
+			background: #C9E2FC;
+			padding: 2px;
+		}
+	</ui:style>
+	<g:HorizontalPanel styleName="{style.hp}">
+		<g:Label ui:field="lbl" styleName="{style.lbl}"></g:Label>
+		<g:TextBox ui:field="txt" styleName="{style.txt}"></g:TextBox>
+	</g:HorizontalPanel>
+
+
+</ui:UiBinder> 

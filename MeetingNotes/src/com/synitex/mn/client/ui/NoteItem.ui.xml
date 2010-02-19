@@ -1,0 +1,42 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
+	<ui:style>
+		.panel {
+			width: 150px;
+			display: inline;
+		}
+		
+		.label {
+			cursor: pointer;
+			padding-left: 5px;
+		}
+		.label:hover {
+            text-decoration: underline;
+        }
+		
+		@sprite .btn {
+			gwt-image: 'cross';
+			width: 16px;
+			height: 16px;
+			cursor: pointer;
+		}
+		
+	</ui:style>
+
+	<ui:image field="cross" src="cross.png"></ui:image>
+
+	<div class="{style.panel}">
+		<table width="100%">
+			<tr>
+				<td>
+					<span ui:field="lbl" class="{style.label}"></span>
+				</td>
+				<td width="20px">
+					<div ui:field="btn" class="{style.btn}"></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+
+</ui:UiBinder> 

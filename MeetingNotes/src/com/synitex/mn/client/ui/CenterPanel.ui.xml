@@ -1,0 +1,20 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:x="urn:import:com.synitex.mn.client.ui">
+
+	<ui:style>
+		
+		.center {
+		  margin-bottom: 10px;
+		  margin-right: 10px;	
+		}
+	</ui:style>
+
+	<g:DockLayoutPanel unit="PX">
+		<g:center>
+			<g:DeckPanel ui:field="container" styleName="{style.center}"></g:DeckPanel>
+		</g:center>
+	</g:DockLayoutPanel>
+
+
+</ui:UiBinder> 
