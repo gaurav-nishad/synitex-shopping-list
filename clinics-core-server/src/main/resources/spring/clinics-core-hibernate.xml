@@ -81,7 +81,7 @@
   <!--
     Exporter that exposes the Hibernate statistics service via JMX. Autodetects the service MBean, using its bean name
     as JMX object name.
-  -->
   <context:mbean-export />
-
+  -->
+  
 </beans>
