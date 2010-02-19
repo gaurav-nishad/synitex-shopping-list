@@ -1,0 +1,12 @@
+<!-- Indices written at Mon, 4 Jan 2010 17:59:11 UTC -->
+
+<datastore-indexes>
+
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="Note" ancestor="false" source="auto">
+        <property name="isDraft" direction="asc"/>
+        <property name="ownerEmail" direction="asc"/>
+        <property name="createdAt" direction="desc"/>
+    </datastore-index>
+
+</datastore-indexes>

@@ -1,0 +1,18 @@
+
+.gwt-Button {
+    font-size: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.ui-gradient {
+    background: url(img/header_background.png) repeat-x;
+}
+
+.ui-panel-background {
+    background-color: #C9E2FC;
+}
+
+.ui-border-color {
+ color: #E4F1FE;
+}

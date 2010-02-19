@@ -1,0 +1,54 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:x="urn:import:com.synitex.mn.client.ui">
+	<ui:style>
+	
+		.shortcuts {
+			border-left: 1px solid #999;
+			border-right: 1px solid #999;
+			border-bottom: 1px solid #999;
+			margin-bottom: 10px;
+			margin-left: 10px;
+		}
+		
+		.stackHeader {
+			cursor: pointer;
+			text-shadow: rgba(255, 255, 255, 1) 0 1px 1px;
+			font-size: 13px;
+			font-weight: bold;
+			color: white;
+			padding-top: 3px;
+			padding-left: 10px;
+			padding-bottom: 3px;
+			border-top: 1px solid #999;
+		}
+		
+		
+	</ui:style>
+
+	
+
+	<g:StackLayoutPanel styleName='{style.shortcuts}'
+		unit='PX'>
+		<g:stack>
+			<g:header size='23'>
+				<div class='{style.stackHeader} ui-gradient'>
+					Meeting notes
+					</div>
+			</g:header>
+			<x:NotesPanel ui:field="notesPanel"></x:NotesPanel>
+		</g:stack>
+
+		<g:stack>
+			<g:header size='23'>
+				<div class='{style.stackHeader} ui-gradient'>
+					Users
+					</div>
+			</g:header>
+			<g:Label>alalal</g:Label>
+		</g:stack>
+
+	</g:StackLayoutPanel>
+
+
+</ui:UiBinder> 

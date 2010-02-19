@@ -1,0 +1,58 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:x="urn:import:com.synitex.mn.client.ui">
+
+	<ui:style>
+		.panelHello {
+			position: relative;
+			float: right;
+			padding-top: 15px;
+		}
+		
+		.panelSignOut {
+			position: relative;
+            float: right;
+            padding-right: 10px;
+		}
+		
+		.header {
+			font-size: 22px;
+			font-weight: bold;
+			letter-spacing: 5px;
+			padding-left: 25px;
+			padding-top: 5px;
+			color: #5590D2;
+		}
+		
+		.welcome {
+			font-weight: bold;
+			padding-right: 5px;
+		}
+		
+		.lblUser {
+			color: blue;
+			background: yellow;
+			font-weight: bold;
+			padding-right: 10px;
+		}
+	</ui:style>
+
+	<g:HorizontalPanel width="100%">
+
+		<g:Label styleName="{style.header}">Meeting Notes</g:Label>
+
+
+		<g:FlowPanel styleName="{style.panelHello}">
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.welcome}">Welcome back, </g:Label>
+				<g:Label ui:field="lblUser" styleName="{style.lblUser}"></g:Label>
+			</g:HorizontalPanel>
+			<g:FlowPanel styleName="{style.panelSignOut}">
+				<g:Anchor href='javascript:;' ui:field='signOutLink'>Sign Out</g:Anchor>
+			</g:FlowPanel>
+		</g:FlowPanel>
+
+
+	</g:HorizontalPanel>
+
+</ui:UiBinder> 
