@@ -14,18 +14,12 @@
 	</parent>
 
 	<dependencies>
-
 		<dependency>
-			<groupId>com.clinics</groupId>
-			<artifactId>clinics-core-server</artifactId>
-			<version>${pom.version}</version>
-		</dependency>
+            <groupId>com.clinics</groupId>
+            <artifactId>clinics-gwt-server</artifactId>
+            <version>${pom.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-servlet</artifactId>
-			<version>${gwt.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
@@ -35,19 +29,6 @@
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-servlet</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 
 	</dependencies>
@@ -66,7 +47,7 @@
 
 								<configuration>
 									<tasks>
-										<property name="gwt.module.name" value="com.clinics.gwt.Clicnics_gwt_client" />
+										<property name="gwt.module.name" value="com.clinics.gwt.Clinics" />
 
 										<path id="compile.class.path">
 											<dirset dir="${basedir}">
