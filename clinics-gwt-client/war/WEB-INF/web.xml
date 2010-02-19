@@ -16,7 +16,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>springGwtRemoteServiceServlet</servlet-name>
-        <url-pattern>/springGwtServices/*</url-pattern>
+        <url-pattern>/clinics/springGwtServices/*</url-pattern>
     </servlet-mapping>
 
 
