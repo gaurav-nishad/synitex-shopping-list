@@ -5,35 +5,24 @@
 
 <web-app>
 
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
+      <!-- SpringGwt remote service servlet -->
     <servlet>
-        <servlet-name>dispatcher</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
+        <servlet-name>springGwtRemoteServiceServlet</servlet-name>
+        <servlet-class>com.clinics.gwt.server.SpringGwtRemoteServiceServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>dispatcher</servlet-name>
-        <url-pattern>/service/*</url-pattern>
+        <servlet-name>springGwtRemoteServiceServlet</servlet-name>
+        <url-pattern>/springGwtServices/*</url-pattern>
     </servlet-mapping>
 
-  
-  <!-- Servlets -->
-  <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>com.clinics.gwt.server.GreetingServiceImpl</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/clicnics_gwt_client/greet</url-pattern>
-  </servlet-mapping>
-  
-  <!-- Default page to serve -->
-  <welcome-file-list>
-    <welcome-file>Clicnics_gwt_client.html</welcome-file>
-  </welcome-file-list>
+
+	<!-- Default page to server -->
+	<welcome-file-list>
+		<welcome-file>Clicnics_gwt_client.html</welcome-file>
+	</welcome-file-list>
 
 </web-app>

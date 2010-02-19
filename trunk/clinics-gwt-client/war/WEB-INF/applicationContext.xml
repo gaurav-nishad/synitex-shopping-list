@@ -14,4 +14,6 @@
     <import resource="classpath:spring/clinics-core-hibernate.xml" />
     <import resource="classpath:spring/clinics-core-app-context.xml" />
     
+    <context:component-scan base-package="com.clinics.gwt.server" />
+    
 </beans>
