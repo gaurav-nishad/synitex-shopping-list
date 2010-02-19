@@ -4,17 +4,41 @@ import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "PERSON_TYPE", discriminatorType = DiscriminatorType.CHAR)
+@DiscriminatorValue("Plane")
 @MappedSuperclass
 public class Person extends OcEntity implements java.io.Serializable {
+    public static enum Discriminators {
+        A { @Override public String getDescription(){ return "admin"; }},
+        E { @Override public String getDescription(){ return "expert"; }},
+        C { @Override public String getDescription(){ return "client"; }};
 
+        public abstract String getDescription();
+    };
+
+    /**
+     * @author Leonids M<leonidms@gmail.com>
+     * 
+     */
     public static enum Gender {
-        M, F
+        M { @Override public String getDescription(){ return "male"; }},
+        F { @Override public String getDescription(){ return "female"; }};
+
+        public abstract String getDescription();
     }
 
     private static final long serialVersionUID = 3816738738370356678L;
