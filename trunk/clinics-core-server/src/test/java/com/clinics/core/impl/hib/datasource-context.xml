@@ -16,9 +16,6 @@
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" p:driverClassName="${jdbc.driverClassName}"
     p:url="${jdbc.url}" p:username="${jdbc.username}" p:password="${jdbc.password}" />
 
-  <bean class="com.clinics.core.impl.hib.HibernateClinic" />
-
-
   <!-- Hibernate SessionFactory -->
   <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
     p:dataSource-ref="dataSource">
@@ -47,6 +44,4 @@
     p:sessionFactory-ref="sessionFactory" />
 
   <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
-
-
 </beans>
