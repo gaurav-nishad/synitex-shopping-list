@@ -10,9 +10,6 @@ import com.clinics.core.api.entities.OcEntity;
  * Utility methods for handling entities. Separate from the BaseEntity class mainly because of dependency on the
  * ORM-associated ObjectRetrievalFailureException.
  * 
- * @author Juergen Hoeller
- * @author Sam Brannen
- * @since 29.10.2003
  * @see OcEntity
  */
 public abstract class EntityUtils {
@@ -38,12 +35,13 @@ public abstract class EntityUtils {
             }
 
             final Number numberId = entity.getId();
-
-            if (numberId != null && numberId.intValue() == entityId && entityClass.isInstance(entity)) {
+            if (numberId != null && numberId.intValue() == entityId //
+                    && entityClass.isInstance(entity)) {
                 return entity;
             }
         }
-        throw new ObjectRetrievalFailureException(entityClass, new Integer(entityId));
+
+        throw new ObjectRetrievalFailureException(entityClass, Integer.valueOf(entityId));
     }
 
 }

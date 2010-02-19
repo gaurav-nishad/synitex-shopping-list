@@ -4,12 +4,18 @@ import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @MappedSuperclass
 public class Person extends OcEntity implements java.io.Serializable {
+
+    public static enum Gender {
+        M, F
+    }
 
     private static final long serialVersionUID = 3816738738370356678L;
 
@@ -30,25 +36,14 @@ public class Person extends OcEntity implements java.io.Serializable {
     private String middleName;
 
     @Basic(optional = true)
-    @Column(name = "PERSONAL_TITLE", insertable = true, updatable = true, length = 20)
-    private String personalTitle;
-
-    @Basic(optional = true)
     @Temporal(TemporalType.DATE)
     @Column(name = "BIRTH_DATE", insertable = true, updatable = true)
     private Date birthDate;
 
     @Basic(optional = true)
     @Column(name = "GENDER", insertable = true, updatable = true, length = 10)
-    private String gender;
-
-    @Basic(optional = true)
-    @Column(name = "RACE", insertable = true, updatable = true, length = 10)
-    private String race;
-
-    @Basic(optional = true)
-    @Column(name = "ETHNICITY", insertable = true, updatable = true, length = 10)
-    private String ethnicity;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @Basic(optional = true)
     @Column(name = "HOME_PHONE", insertable = true, updatable = true, length = 30)
@@ -62,6 +57,13 @@ public class Person extends OcEntity implements java.io.Serializable {
     @Column(name = "BUSINESS_PHONE", insertable = true, updatable = true, length = 30)
     private String businessTelephone;
 
+    /**
+     * 
+     */
+    public Person() {
+        super();
+    }
+
     public Date getBirthDate() {
         return birthDate;
     }
@@ -70,15 +72,11 @@ public class Person extends OcEntity implements java.io.Serializable {
         return businessTelephone;
     }
 
-    public String getEthnicity() {
-        return ethnicity;
-    }
-
     public String getFirstName() {
         return firstName;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
@@ -98,14 +96,6 @@ public class Person extends OcEntity implements java.io.Serializable {
         return mobileTelephone;
     }
 
-    public String getPersonalTitle() {
-        return personalTitle;
-    }
-
-    public String getRace() {
-        return race;
-    }
-
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
@@ -114,15 +104,11 @@ public class Person extends OcEntity implements java.io.Serializable {
         this.businessTelephone = businessTelephone;
     }
 
-    public void setEthnicity(String ethnicity) {
-        this.ethnicity = ethnicity;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -142,11 +128,4 @@ public class Person extends OcEntity implements java.io.Serializable {
         this.mobileTelephone = mobileTelephone;
     }
 
-    public void setPersonalTitle(String personalTitle) {
-        this.personalTitle = personalTitle;
-    }
-
-    public void setRace(String race) {
-        this.race = race;
-    }
 }
