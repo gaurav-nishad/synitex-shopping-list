@@ -1,6 +1,7 @@
 package com.clinics.gwt.client;
 
-import com.clinics.gwt.shared.FieldVerifier;
+import com.clinics.gwt.shared.HelloService;
+import com.clinics.gwt.shared.HelloServiceAsync;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -22,18 +23,16 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  */
 public class Clicnics_gwt_client implements EntryPoint {
     /**
-     * The message displayed to the user when the server cannot be reached or
-     * returns an error.
+     * The message displayed to the user when the server cannot be reached or returns an error.
      */
-    private static final String SERVER_ERROR = "An error occurred while "
-            + "attempting to contact the server. Please check your network "
-            + "connection and try again.";
+    private static final String SERVER_ERROR =
+            "An error occurred while " + "attempting to contact the server. Please check your network "
+                    + "connection and try again.";
 
     /**
      * Create a remote service proxy to talk to the server-side Greeting service.
      */
-    private final GreetingServiceAsync greetingService = GWT
-            .create(GreetingService.class);
+    private final HelloServiceAsync greetingService = GWT.create(HelloService.class);
 
     /**
      * This is the entry point method.
@@ -110,37 +109,29 @@ public class Clicnics_gwt_client implements EntryPoint {
                 // First, we validate the input.
                 errorLabel.setText("");
                 String textToServer = nameField.getText();
-                if (!FieldVerifier.isValidName(textToServer)) {
-                    errorLabel.setText("Please enter at least four characters");
-                    return;
-                }
 
                 // Then, we send the input to the server.
                 sendButton.setEnabled(false);
                 textToServerLabel.setText(textToServer);
                 serverResponseLabel.setText("");
-                greetingService.greetServer(textToServer,
-                        new AsyncCallback<String>() {
-                            public void onFailure(Throwable caught) {
-                                // Show the RPC error message to the user
-                                dialogBox
-                                        .setText("Remote Procedure Call - Failure");
-                                serverResponseLabel
-                                        .addStyleName("serverResponseLabelError");
-                                serverResponseLabel.setHTML(SERVER_ERROR);
-                                dialogBox.center();
-                                closeButton.setFocus(true);
-                            }
+                greetingService.sayHello(new AsyncCallback<String>() {
+                    public void onFailure(Throwable caught) {
+                        // Show the RPC error message to the user
+                        dialogBox.setText("Remote Procedure Call - Failure");
+                        serverResponseLabel.addStyleName("serverResponseLabelError");
+                        serverResponseLabel.setHTML(SERVER_ERROR);
+                        dialogBox.center();
+                        closeButton.setFocus(true);
+                    }
 
-                            public void onSuccess(String result) {
-                                dialogBox.setText("Remote Procedure Call");
-                                serverResponseLabel
-                                        .removeStyleName("serverResponseLabelError");
-                                serverResponseLabel.setHTML(result);
-                                dialogBox.center();
-                                closeButton.setFocus(true);
-                            }
-                        });
+                    public void onSuccess(String result) {
+                        dialogBox.setText("Remote Procedure Call");
+                        serverResponseLabel.removeStyleName("serverResponseLabelError");
+                        serverResponseLabel.setHTML(result);
+                        dialogBox.center();
+                        closeButton.setFocus(true);
+                    }
+                });
             }
         }
 

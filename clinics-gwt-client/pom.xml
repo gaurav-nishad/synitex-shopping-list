@@ -1,120 +1,119 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.clinics</groupId>
-  <artifactId>clinics-gwt-client</artifactId>
-  <packaging>jar</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.clinics</groupId>
+	<artifactId>clinics-gwt-client</artifactId>
+	<packaging>jar</packaging>
+	<version>0.0.1-SNAPSHOT</version>
 
-  <parent>
-    <groupId>com.clinics</groupId>
-    <artifactId>clinics-pom</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <relativePath>../clinics-pom/pom.xml</relativePath>
-  </parent>
+	<parent>
+		<groupId>com.clinics</groupId>
+		<artifactId>clinics-pom</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../clinics-pom/pom.xml</relativePath>
+	</parent>
 
-  <dependencies>
+	<dependencies>
 
-    <dependency>
-      <groupId>com.clinics</groupId>
-      <artifactId>clinics-core-server</artifactId>
-      <version>${pom.version}</version>
-    </dependency>
+		<dependency>
+			<groupId>com.clinics</groupId>
+			<artifactId>clinics-core-server</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
 
-    <dependency>
-      <groupId>com.google.gwt</groupId>
-      <artifactId>gwt-dev</artifactId>
-      <version>2.0.1</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.google.gwt</groupId>
-      <artifactId>gwt-user</artifactId>
-      <version>2.0.1</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.google.gwt</groupId>
-      <artifactId>gwt-servlet</artifactId>
-      <version>2.0.1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-    </dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>			
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>			
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>			
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
 
-  </dependencies>
+	</dependencies>
 
-  <profiles>
-    <profile>
-      <id>compile-gwt</id>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>gwt-compile</id>
-                <phase>compile</phase>
+	<profiles>
+		<profile>
+			<id>compile-gwt</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>gwt-compile</id>
+								<phase>compile</phase>
 
-                <configuration>
-                  <tasks>
-                    <property name="gwt.module.name" value="com.clinics.gwt.Clicnics_gwt_client" />
+								<configuration>
+									<tasks>
+										<property name="gwt.module.name" value="com.clinics.gwt.Clicnics_gwt_client" />
 
-                    <path id="compile.class.path">
-                      <dirset dir="${basedir}">
-                        <include name="src" />
-                      </dirset>
-                      <path refid="maven.compile.classpath" />
-                    </path>
+										<path id="compile.class.path">
+											<dirset dir="${basedir}">
+												<include name="src" />
+											</dirset>
+											<path refid="maven.compile.classpath" />
+										</path>
 
-                    <java classname="com.google.gwt.dev.Compiler" fork="true" failonerror="true" maxmemory="512m">
-                      <classpath refid="compile.class.path" />
-                      <arg value="${gwt.module.name}" />
-                    </java>
+										<java classname="com.google.gwt.dev.Compiler" fork="true"
+											failonerror="true" maxmemory="512m">
+											<classpath refid="compile.class.path" />
+											<arg value="${gwt.module.name}" />
+										</java>
 
-                  </tasks>
-                </configuration>
+									</tasks>
+								</configuration>
 
-                <goals>
-                  <goal>run</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>war</id>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <version>2.2-beta-5</version>
-            <executions>
-              <execution>
-                <id>gwt-compile</id>
-                <phase>compile</phase>
-                <configuration>
-                  <descriptors>
-                    <descriptor>assembly.xml</descriptor>
-                  </descriptors>
-                </configuration>
-                <goals>
-                  <goal>assembly</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>war</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>2.2-beta-5</version>
+						<executions>
+							<execution>
+								<id>gwt-compile</id>
+								<phase>compile</phase>
+								<configuration>
+									<descriptors>
+										<descriptor>assembly.xml</descriptor>
+									</descriptors>
+								</configuration>
+								<goals>
+									<goal>assembly</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 
 
