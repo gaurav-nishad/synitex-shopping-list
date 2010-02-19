@@ -10,7 +10,7 @@ import javax.persistence.Entity;
  * @author Leonids M<leonidms@gmail.com>
  * 
  */
-@Entity
+@Entity(name="Client")
 @DiscriminatorValue(value = "C")
 public class Client extends Person {
     private static final long serialVersionUID = -3020170110983135333L;

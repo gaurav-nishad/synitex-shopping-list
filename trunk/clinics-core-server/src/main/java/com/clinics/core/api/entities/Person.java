@@ -12,20 +12,24 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
+@Entity(name="Person")
+@Table(name = "PERSON")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "PERSON_TYPE", discriminatorType = DiscriminatorType.CHAR)
-@DiscriminatorValue("Plane")
-@MappedSuperclass
+@DiscriminatorValue(value="U")
+@SequenceGenerator(name = "seq", sequenceName = "PERSON_SEQ", allocationSize = 1)
+//@MappedSuperclass
 public class Person extends OcEntity implements java.io.Serializable {
     public static enum Discriminators {
         A { @Override public String getDescription(){ return "admin"; }},
         E { @Override public String getDescription(){ return "expert"; }},
-        C { @Override public String getDescription(){ return "client"; }};
+        C { @Override public String getDescription(){ return "client"; }},
+        U { @Override public String getDescription(){ return "unknown"; }};
 
         public abstract String getDescription();
     };
