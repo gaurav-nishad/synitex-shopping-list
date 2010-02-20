@@ -5,24 +5,39 @@
 
 <web-app>
 
+    <!-- starts main spring application context using applicationContext.xml -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-      <!-- SpringGwt remote service servlet -->
-    <servlet>
-        <servlet-name>springGwtRemoteServiceServlet</servlet-name>
-        <servlet-class>com.clinics.gwt.server.SpringGwtRemoteServiceServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>springGwtRemoteServiceServlet</servlet-name>
-        <url-pattern>/clinics/springGwtServices/*</url-pattern>
-    </servlet-mapping>
+    <!-- bounds current request to thread; used to get Request in spring beans -->
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
+	<!-- SpringGwt remote service servlet -->
+	<servlet>
+		<servlet-name>springGwtRemoteServiceServlet</servlet-name>
+		<servlet-class>com.clinics.gwt.server.util.SpringGwtRemoteServiceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springGwtRemoteServiceServlet</servlet-name>
+		<url-pattern>/clinics/springGwtServices/*</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>com.clinics.gwt.server.util.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/clinics/springGwtServices/secured/*</url-pattern>
+	</filter-mapping>
 
 
 	<!-- Default page to server -->
 	<welcome-file-list>
-		<welcome-file>Clicnics_gwt_client.html</welcome-file>
+		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
 </web-app>
