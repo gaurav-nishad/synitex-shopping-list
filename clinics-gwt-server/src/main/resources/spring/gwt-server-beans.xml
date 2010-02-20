@@ -13,5 +13,6 @@
 
     
     <bean id="hello" class="com.clinics.gwt.server.HelloServiceImpl"></bean>
+    <bean id="login" class="com.clinics.gwt.server.LoginServiceImpl"></bean>
     
 </beans>

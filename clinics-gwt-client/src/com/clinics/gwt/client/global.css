@@ -1,0 +1,35 @@
+body {
+	background-color: #92C1F0;
+}
+
+.gwt-TabBarItem {
+	background: #94A4BA none repeat scroll 0 0 !important; 
+	color: white !important;
+	}
+.gwt-TabBarItem-selected {
+	background: #39557B none repeat scroll 0 0 !important;
+	}
+.gwt-TabPanelBottom {
+    background-color: #6F8EBA; 
+    border-color: #39557B;
+    border-width: 2px 1px 1px;
+    padding: 0px !important;
+}
+
+.gwt-Label {
+    color: white;	
+}
+
+.ui-second-level-menu-panel {
+    background: #39557B;
+}
+.ui-2nd-level-menu-hyperlink {
+    color: yellow;
+    font-size: 11px;
+    font-weight: bold;
+}
+.ui-2nd-level-menu-hyperlink-selected {
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+}

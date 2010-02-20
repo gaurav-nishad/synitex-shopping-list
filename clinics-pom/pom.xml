@@ -62,15 +62,15 @@
 				<version>${pom.version}</version>
 			</dependency>
 			<dependency>
-                <groupId>com.clinics</groupId>
-                <artifactId>clinics-gwt-server</artifactId>
-                <version>${pom.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.clinics</groupId>
-                <artifactId>clinics-core-server</artifactId>
-                <version>${pom.version}</version>
-            </dependency>
+				<groupId>com.clinics</groupId>
+				<artifactId>clinics-gwt-server</artifactId>
+				<version>${pom.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.clinics</groupId>
+				<artifactId>clinics-core-server</artifactId>
+				<version>${pom.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>com.google.gwt</groupId>
@@ -93,6 +93,24 @@
 				<groupId>com.google.gwt</groupId>
 				<artifactId>gwt-servlet</artifactId>
 				<version>${gwt.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.gwt</groupId>
+				<artifactId>gchart</artifactId>
+				<scope>provided</scope>
+				<version>2.6</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.gwt</groupId>
+				<artifactId>gwt-dnd</artifactId>
+				<scope>provided</scope>
+				<version>3.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.gwt</groupId>
+				<artifactId>gwt-incubator</artifactId>
+				<scope>provided</scope>
+				<version>20091216-r1739</version>
 			</dependency>
 
 			<dependency>
