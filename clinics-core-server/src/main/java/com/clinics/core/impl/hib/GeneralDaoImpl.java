@@ -8,11 +8,14 @@ import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.orm.hibernate3.SessionFactoryUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -81,11 +84,19 @@ public class GeneralDaoImpl<U> implements GeneralDao<U> {
         getCurrentSession().merge(entities);
     }
 
+    private DataAccessException castHibernateException(HibernateException e) {
+        return SessionFactoryUtils.convertHibernateAccessException(e);
+    }
+
     @SuppressWarnings("unchecked")
     protected U fetchEntity(Class<? extends OcEntity> hibernateType, Integer id) {
-        Assert.notNull(id, "id should be null");
-        Assert.isAssignable(OcEntity.class, hibernateType);
-        return (U) getCurrentSession().load(hibernateType, id);
+        try {
+            Assert.notNull(id, "id should be null");
+            Assert.isAssignable(OcEntity.class, hibernateType);
+            return (U) getCurrentSession().load(hibernateType, id);
+        } catch (final HibernateException e) {
+            throw castHibernateException(e);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -94,22 +105,26 @@ public class GeneralDaoImpl<U> implements GeneralDao<U> {
         Assert.notEmpty(attributes, "attributes must be specified");
         Assert.isTrue(attributes.length % 2 == 0, "each attribute passed should have a value");
 
-        Criterion lhs = null;
-        for (int i = 0; i < attributes.length - 1; i += 2) {
-            Assert.isInstanceOf(String.class, attributes[i]);
-            Assert.notNull(attributes[i + 1], "attribute[" + i + "] should have a value");
-            final Criterion rhs = Restrictions.eq((String) attributes[i], attributes[i + 1]);
-            if (lhs != null) {
-                lhs = Restrictions.and(lhs, rhs);
+        try {
+            Criterion lhs = null;
+            for (int i = 0; i < attributes.length - 1; i += 2) {
+                Assert.isInstanceOf(String.class, attributes[i]);
+                Assert.notNull(attributes[i + 1], "attribute[" + i + "] should have a value");
+                final Criterion rhs = Restrictions.eq((String) attributes[i], attributes[i + 1]);
+                if (lhs != null) {
+                    lhs = Restrictions.and(lhs, rhs);
+                }
             }
-        }
 
-        return getCurrentSession().createCriteria(hibernateType).add(lhs).list();
+            return getCurrentSession().createCriteria(hibernateType).add(lhs).list();
+        } catch (final HibernateException e) {
+            throw castHibernateException(e);
+        }
     }
 
     protected Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
-    }
+    };
 
     protected Class<? extends OcEntity> getHibernateType() {
         final ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
@@ -121,10 +136,14 @@ public class GeneralDaoImpl<U> implements GeneralDao<U> {
         final Class<? extends OcEntity> hibernateType = (Class<? extends OcEntity>) typeInfo[0];
         Assert.isAssignable(OcEntity.class, hibernateType);
         return hibernateType;
-    };
+    }
 
     protected void storeEntity(U entity) {
         Assert.notNull(entity, "Could not persist null entity");
-        getCurrentSession().merge(entity);
+        try {
+            getCurrentSession().merge(entity);
+        } catch (final HibernateException e) {
+            throw castHibernateException(e);
+        }
     }
 }

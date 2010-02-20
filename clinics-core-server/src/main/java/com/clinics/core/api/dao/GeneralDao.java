@@ -3,6 +3,8 @@ package com.clinics.core.api.dao;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+
 public interface GeneralDao<U> {
 
     /**
@@ -12,14 +14,14 @@ public interface GeneralDao<U> {
      *  .findByAttributes(&quot;firstName&quot;, &quot;John&quot;, &quot;lastName&quot;, &quot;Doe&quot;)
      * </pre>
      */
-    List<U> findByAttributes(Object... attributes);
+    List<U> findByAttributes(Object... attributes) throws DataAccessException;
 
-    U get(Integer id);
+    U get(Integer id) throws DataAccessException;
 
-    List<U> getAll();
+    List<U> getAll() throws DataAccessException;
 
-    void store(U entity);
+    void store(U entity) throws DataAccessException;
 
-    void storeAll(Collection<U> entity);
+    void storeAll(Collection<U> entity) throws DataAccessException;
 
 }
