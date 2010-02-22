@@ -1,0 +1,1 @@
+mvn install:install-file -DgroupId=com.google.gwt -DartifactId=gwt-incubator -Dversion=20091216-r1739 -Dfile=libs/gwt-incubator-20091216-r1739.jar -Dpackaging=jar -DgeneratePom=true
