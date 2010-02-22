@@ -59,7 +59,7 @@
 				<executions>
 					<execution>
 						<id>remove-prev-generated-gwt</id>
-						<phase>compile</phase>
+						<phase>clean</phase>
 
 						<configuration>
 							<tasks>
@@ -117,7 +117,7 @@
 				<executions>
 					<execution>
 						<id>war</id>
-						<phase>compile</phase>
+						<phase>package</phase>
 						<configuration>
 							<descriptors>
 								<descriptor>assembly.xml</descriptor>
