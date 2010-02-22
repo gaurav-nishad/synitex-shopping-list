@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-  <import resource="classpath:com/clinics/core/impl/hib/mysql-datasource-context.xml" />
+  <import resource="classpath:com/clinics/core/impl/hib/hsqldb-datasource-context.xml" />
 
   <bean id="personDao" class="com.clinics.core.impl.hib.PersonDaoImpl">
     <property name="sessionFactory" ref="sessionFactory" />
