@@ -76,7 +76,7 @@ public class Person extends OcEntity implements java.io.Serializable {
     private String lastName;
 
     @Basic(optional = true)
-    @Column(name = "LAST_NAME", insertable = true, updatable = true, length = 255)
+    @Column(name = "PASSWORD", insertable = true, updatable = true, length = 255)
     private String password;
 
     @Basic(optional = true)
@@ -88,7 +88,7 @@ public class Person extends OcEntity implements java.io.Serializable {
     private String mobileTelephone;
 
     @Basic(optional = false)
-    @Column(name = "USER_ID", insertable = true, updatable = true, length = 32, unique = true)
+    @Column(name = "LOGIN_ID", insertable = true, updatable = true, length = 32, unique = true)
     private String userId;
 
     /**
