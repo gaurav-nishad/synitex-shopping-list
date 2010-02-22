@@ -1,3 +1,0 @@
-rem mvn install:install-file -DgroupId=com.google.gwt -DartifactId=gchart -Dversion=2.6 -Dfile=libs/gchart.jar -Dpackaging=jar -DgeneratePom=true
-rem mvn install:install-file -DgroupId=com.google.gwt -DartifactId=gwt-dnd -Dversion=3.0.0 -Dfile=libs/gwt-dnd-3.0.0.jar -Dpackaging=jar -DgeneratePom=true
-mvn install:install-file -DgroupId=com.google.gwt -DartifactId=gwt-incubator -Dversion=20091216-r1739 -Dfile=libs/gwt-incubator-20091216-r1739.jar -Dpackaging=jar -DgeneratePom=true
