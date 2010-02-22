@@ -16,29 +16,29 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity(name="Person")
+@Entity(name = "Person")
 @Table(name = "PERSON")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "PERSON_TYPE", discriminatorType = DiscriminatorType.CHAR)
-@DiscriminatorValue(value="U")
-//@MappedSuperclass
+@DiscriminatorValue(value = "U")
+// @MappedSuperclass
 public class Person extends OcEntity implements java.io.Serializable {
-    public static enum Discriminators {
-        A { @Override public String getDescription(){ return "admin"; }},
-        E { @Override public String getDescription(){ return "expert"; }},
-        C { @Override public String getDescription(){ return "client"; }},
-        U { @Override public String getDescription(){ return "unknown"; }};
-
-        public abstract String getDescription();
-    };
-
     /**
      * @author Leonids M<leonidms@gmail.com>
      * 
      */
     public static enum Gender {
-        M { @Override public String getDescription(){ return "male"; }},
-        F { @Override public String getDescription(){ return "female"; }};
+        F { @Override public String getDescription() { return "female"; }},
+        M { @Override public String getDescription() { return "male"; }};
+
+        public abstract String getDescription();
+    };
+
+    public static enum RoleDiscriminators {
+        A { @Override public String getDescription() { return "admin"; }},
+        C { @Override public String getDescription() { return "client"; }},
+        E { @Override public String getDescription() { return "expert"; }},
+        U { @Override public String getDescription() { return "unknown"; }};
 
         public abstract String getDescription();
     }
@@ -50,21 +50,17 @@ public class Person extends OcEntity implements java.io.Serializable {
     }
 
     @Basic(optional = true)
-    @Column(name = "FIRST_NAME", insertable = true, updatable = true, length = 255)
-    private String firstName;
-
-    @Basic(optional = true)
-    @Column(name = "LAST_NAME", insertable = true, updatable = true, length = 255)
-    private String lastName;
-
-    @Basic(optional = true)
-    @Column(name = "MIDDLE_NAME", insertable = true, updatable = true, length = 255)
-    private String middleName;
-
-    @Basic(optional = true)
     @Temporal(TemporalType.DATE)
     @Column(name = "BIRTH_DATE", insertable = true, updatable = true)
     private Date birthDate;
+
+    @Basic(optional = true)
+    @Column(name = "BUSINESS_PHONE", insertable = true, updatable = true, length = 30)
+    private String businessTelephone;
+
+    @Basic(optional = true)
+    @Column(name = "FIRST_NAME", insertable = true, updatable = true, length = 255)
+    private String firstName;
 
     @Basic(optional = true)
     @Column(name = "GENDER", insertable = true, updatable = true, length = 10)
@@ -76,12 +72,24 @@ public class Person extends OcEntity implements java.io.Serializable {
     private String homeTelephone;
 
     @Basic(optional = true)
+    @Column(name = "LAST_NAME", insertable = true, updatable = true, length = 255)
+    private String lastName;
+
+    @Basic(optional = true)
+    @Column(name = "LAST_NAME", insertable = true, updatable = true, length = 255)
+    private String password;
+
+    @Basic(optional = true)
+    @Column(name = "MIDDLE_NAME", insertable = true, updatable = true, length = 255)
+    private String middleName;
+
+    @Basic(optional = true)
     @Column(name = "MOBILE_PHONE", insertable = true, updatable = true, length = 30)
     private String mobileTelephone;
 
-    @Basic(optional = true)
-    @Column(name = "BUSINESS_PHONE", insertable = true, updatable = true, length = 30)
-    private String businessTelephone;
+    @Basic(optional = false)
+    @Column(name = "USER_ID", insertable = true, updatable = true, length = 32, unique = true)
+    private String userId;
 
     /**
      * 
@@ -122,6 +130,14 @@ public class Person extends OcEntity implements java.io.Serializable {
         return mobileTelephone;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
@@ -154,4 +170,11 @@ public class Person extends OcEntity implements java.io.Serializable {
         this.mobileTelephone = mobileTelephone;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }
