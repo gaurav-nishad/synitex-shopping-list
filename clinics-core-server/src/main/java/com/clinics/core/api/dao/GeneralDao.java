@@ -16,12 +16,12 @@ public interface GeneralDao<U> {
      */
     List<U> findByAttributes(Object... attributes) throws DataAccessException;
 
-    U get(Integer id) throws DataAccessException;
+    U get(Long id) throws DataAccessException;
 
     List<U> getAll() throws DataAccessException;
 
-    void store(U entity) throws DataAccessException;
+    U store(U entity) throws DataAccessException;
 
-    void storeAll(Collection<U> entity) throws DataAccessException;
+    Collection<U> storeAll(Collection<U> entity) throws DataAccessException;
 
 }

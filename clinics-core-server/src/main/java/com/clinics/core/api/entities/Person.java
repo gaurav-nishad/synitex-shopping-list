@@ -12,7 +12,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,7 +21,6 @@ import javax.persistence.TemporalType;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "PERSON_TYPE", discriminatorType = DiscriminatorType.CHAR)
 @DiscriminatorValue(value="U")
-@SequenceGenerator(name = "seq", sequenceName = "PERSON_SEQ", allocationSize = 1)
 //@MappedSuperclass
 public class Person extends OcEntity implements java.io.Serializable {
     public static enum Discriminators {

@@ -15,7 +15,7 @@
 
   <!-- Configurer that replaces ${...} placeholders with values from a properties file -->
   <!-- (in this case, JDBC-related settings for the dataSource definition below) -->
-  <context:property-placeholder location="classpath:jdbc.properties" />
+  <context:property-placeholder location="classpath:jdbc-mysql-prod.properties" />
 
   <!--
     Uses Apache Commons DBCP for connection pooling. See Commons DBCP documentation for the required JAR files.
@@ -37,6 +37,7 @@
         <prop key="hibernate.dialect">${hibernate.dialect}</prop>
         <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
         <prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+        <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
       </props>
     </property>
 

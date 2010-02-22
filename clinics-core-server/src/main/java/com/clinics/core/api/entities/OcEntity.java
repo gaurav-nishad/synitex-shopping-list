@@ -16,7 +16,7 @@ import javax.persistence.MappedSuperclass;
 public class OcEntity implements java.io.Serializable {
     private static final long serialVersionUID = -6305420200927141395L;
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @Column(name = "ID", insertable = true, updatable = true)
     private Long id;
@@ -59,6 +59,10 @@ public class OcEntity implements java.io.Serializable {
         int result = 1;
         result = prime * result + (id == null ? 0 : id.hashCode());
         return result;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }
