@@ -37,89 +37,102 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-dnd</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-incubator</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dnd</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-incubator</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 
 	</dependencies>
 
-	<profiles>
-		<profile>
-			<id>compile-gwt</id>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>gwt-compile</id>
-								<phase>compile</phase>
+	<build>
+		<plugins>
 
-								<configuration>
-									<tasks>
-										<property name="gwt.module.name" value="com.clinics.gwt.Clinics" />
+            <!-- remove previously generated GWT -->
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>remove-prev-generated-gwt</id>
+						<phase>compile</phase>
 
-										<path id="compile.class.path">
-											<dirset dir="${basedir}">
-												<include name="src" />
-											</dirset>
-											<path refid="maven.compile.classpath" />
-										</path>
+						<configuration>
+							<tasks>
+								<delete dir="war/clinics"></delete>                             
+							</tasks>
+						</configuration>
 
-										<java classname="com.google.gwt.dev.Compiler" fork="true"
-											failonerror="true" maxmemory="512m">
-											<classpath refid="compile.class.path" />
-											<arg value="${gwt.module.name}" />
-										</java>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
-									</tasks>
-								</configuration>
+			<!-- Compile GWT code -->
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>gwt-compile</id>
+						<phase>compile</phase>
 
-								<goals>
-									<goal>run</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>war</id>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-assembly-plugin</artifactId>
-						<version>2.2-beta-5</version>
-						<executions>
-							<execution>
-								<id>gwt-compile</id>
-								<phase>compile</phase>
-								<configuration>
-									<descriptors>
-										<descriptor>assembly.xml</descriptor>
-									</descriptors>
-								</configuration>
-								<goals>
-									<goal>assembly</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+						<configuration>
+							<tasks>
+								<property name="gwt.module.name" value="com.clinics.gwt.Clinics" />
 
+								<path id="compile.class.path">
+									<dirset dir="${basedir}">
+										<include name="src" />
+									</dirset>
+									<path refid="maven.compile.classpath" />
+								</path>
 
+								<java classname="com.google.gwt.dev.Compiler" fork="true"
+									failonerror="true" maxmemory="512m">
+									<classpath refid="compile.class.path" />
+									<arg value="${gwt.module.name}" />
+								</java>
 
+							</tasks>
+						</configuration>
+
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+
+			<!-- create war file --> 
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2-beta-5</version>
+				<executions>
+					<execution>
+						<id>war</id>
+						<phase>compile</phase>
+						<configuration>
+							<descriptors>
+								<descriptor>assembly.xml</descriptor>
+							</descriptors>
+							<finalName>clinics</finalName>
+						</configuration>
+						<goals>
+							<goal>assembly</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+	</build>
 
 
 </project>
