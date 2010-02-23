@@ -32,12 +32,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      */
     @Override
     public Authentication authenticate(String identity, byte[] credentials) throws AuthenticationException {
-        final Person person = findPersonById(identity, credentials);
+        final Person person = findPersonByIdAndPassword(identity, credentials);
         if (person == null) {
             throw new AuthenticationException(ERROR_MESSAGE_00);
         }
 
-        return new AuthenticationImpl(identity, getDummyToken(person));
+        return new AuthenticationImpl(identity, getDumbToken(person));
 
     }
 
@@ -49,7 +49,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         this.personDao = personDao;
     }
 
-    private Person findPersonById(String userId, byte[] password) throws AuthenticationException {
+    private Person findPersonByIdAndPassword(String userId, byte[] password) throws AuthenticationException {
         List<Person> personsById = null;
         String passwordString;
         try {
@@ -77,7 +77,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return person;
     }
 
-    private byte[] getDummyToken(Person person) throws AuthenticationException {
+    private byte[] getDumbToken(Person person) throws AuthenticationException {
         try {
             return String.valueOf(1e3 + (long) Math.random() * (1e9 - 1e3)).getBytes(UTF_8);
         } catch (final UnsupportedEncodingException e) {
