@@ -107,9 +107,7 @@ public class GeneralDaoImpl<U> implements GeneralDao<U> {
                 Assert.isInstanceOf(String.class, attributes[i]);
                 Assert.notNull(attributes[i + 1], "attribute[" + i + "] should have a value");
                 final Criterion rhs = Restrictions.eq((String) attributes[i], attributes[i + 1]);
-                if (lhs != null) {
-                    lhs = Restrictions.and(lhs, rhs);
-                }
+                lhs = lhs == null ? rhs : Restrictions.and(lhs, rhs);
             }
 
             return getCurrentSession().createCriteria(hibernateType).add(lhs).list();
