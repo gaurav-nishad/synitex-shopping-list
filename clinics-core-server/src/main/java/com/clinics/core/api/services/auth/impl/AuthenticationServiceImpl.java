@@ -4,6 +4,7 @@
 package com.clinics.core.api.services.auth.impl;
 
 import java.io.UnsupportedEncodingException;
+import java.text.MessageFormat;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -21,7 +22,8 @@ import com.clinics.core.api.services.auth.AuthenticationService;
  * 
  */
 public class AuthenticationServiceImpl implements AuthenticationService {
-    private static final String ERROR_MESSAGE_00 = "Could not authenticate such user with passed in credentials";
+    private static final String ERROR_MESSAGE_00 =
+            "Could not authenticate such user (userId= {0}) with passed in credentials";
 
     private static final String UTF_8 = "UTF-8";
 
@@ -34,7 +36,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public Authentication authenticate(String identity, byte[] credentials) throws AuthenticationException {
         final Person person = findPersonByIdAndPassword(identity, credentials);
         if (person == null) {
-            throw new AuthenticationException(ERROR_MESSAGE_00);
+            throw new AuthenticationException(defaultExceptionMessage(identity));
         }
 
         return new AuthenticationImpl(identity, getDumbToken(person));
@@ -47,6 +49,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     public void setPersonDao(PersonDao personDao) {
         this.personDao = personDao;
+    }
+
+    private String defaultExceptionMessage(String identity) {
+        return MessageFormat.format(ERROR_MESSAGE_00, identity);
     }
 
     private Person findPersonByIdAndPassword(String userId, byte[] password) throws AuthenticationException {
@@ -65,11 +71,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
 
         if (CollectionUtils.size(personsById) > 1) {
-            throw new AuthenticationException(ERROR_MESSAGE_00 + ". " + "Multiple matching records found.");
+            throw new AuthenticationException(defaultExceptionMessage(userId) + ". "
+                    + "Multiple matching records found.");
         }
 
         if (CollectionUtils.isEmpty(personsById)) {
-            throw new AuthenticationException(ERROR_MESSAGE_00);
+            throw new AuthenticationException(defaultExceptionMessage(userId));
         }
 
         final Person person = personsById.get(0);
