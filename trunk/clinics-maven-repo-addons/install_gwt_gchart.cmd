@@ -1,1 +1,0 @@
-mvn install:install-file -DgroupId=com.google.gwt -DartifactId=gchart -Dversion=2.6 -Dfile=libs/gchart.jar -Dpackaging=jar -DgeneratePom=true
