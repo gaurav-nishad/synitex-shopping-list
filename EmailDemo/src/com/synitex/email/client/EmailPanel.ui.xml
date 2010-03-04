@@ -1,0 +1,82 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.content {
+			border-style: solid;
+			border-width: 1px;
+		}
+		
+		.caption {
+			font-size: 22px;
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+
+		<table width="100%">
+			<tr height="50px">
+				<td align="center">
+					<g:Label styleName="{style.caption}">Sample email application</g:Label>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+
+					<table border="0px" width="80%">
+						<tr>
+							<td align="left" width="100px">
+								<g:Label>From:</g:Label>
+							</td>
+							<td align="left">
+								<g:TextBox ui:field="txtFrom" width="95%"></g:TextBox>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" width="100px">
+								<g:Label>To:</g:Label>
+							</td>
+							<td align="left">
+								<g:TextBox ui:field="txtTo" width="95%"></g:TextBox>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" width="100px">
+								<g:Label>Subject:</g:Label>
+							</td>
+							<td align="left">
+								<g:TextBox ui:field="txtSubject" width="95%"></g:TextBox>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" width="100px">
+								<g:Label>Add image:</g:Label>
+							</td>
+							<td align="left">
+								<g:FormPanel ui:field="formPanel" width="95%">
+								    <g:HorizontalPanel ui:field="formPanelContent" />
+								</g:FormPanel>
+							</td>
+						</tr>
+
+						<tr height="350px">
+							<td colspan="2" valign="top">
+								<g:DockPanel styleName="{style.content}" width="100%"
+									height="100%" ui:field="dockPanel">
+
+								</g:DockPanel>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="2" align="right">
+								<g:Button ui:field="btnSend">Send</g:Button>
+							</td>
+						</tr>
+
+					</table>
+				</td>
+			</tr>
+		</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 
