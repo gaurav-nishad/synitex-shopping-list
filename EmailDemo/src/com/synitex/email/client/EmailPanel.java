@@ -77,7 +77,8 @@ public class EmailPanel extends Composite {
 		dockPanel.add(toolbar, DockPanel.NORTH);
 		dockPanel.add(noteTxt, DockPanel.CENTER);
 
-		formPanel.setAction(GWT.getModuleBaseURL() + "fileupload");
+		// formPanel.setAction(GWT.getModuleBaseURL() + "fileupload");
+		formPanel.setAction(GWT.getModuleBaseURL() + "image");
 		formPanel.setEncoding(FormPanel.ENCODING_MULTIPART);
 		formPanel.setMethod(FormPanel.METHOD_POST);
 		lastFileUpload = createFileUpload();
@@ -85,7 +86,7 @@ public class EmailPanel extends Composite {
 
 		formPanel.addSubmitHandler(new SubmitHandler() {
 			public void onSubmit(SubmitEvent event) {
-				formPanelContent.add(new Label("Uploading file..."));
+				formPanelContent.add(new Label("Processing image..."));
 			}
 		});
 		formPanel.addSubmitCompleteHandler(new SubmitCompleteHandler() {
@@ -97,8 +98,9 @@ public class EmailPanel extends Composite {
 				lastFileUpload = createFileUpload();
 				formPanelContent.add(lastFileUpload);
 
-				String result = event.getResults().trim().toLowerCase();
-				if (result.startsWith("<pre>id=")) {
+				String result = event.getResults().trim();
+				if (result.startsWith("<pre>id=")
+						|| result.startsWith("<PRE>id=")) {
 					int idxLast = result.indexOf("</");
 					String id = result.substring("<pre>id=".length(), idxLast);
 					String fileDownloadUrl = GWT.getModuleBaseURL()
@@ -108,6 +110,18 @@ public class EmailPanel extends Composite {
 					String html = noteTxt.getHTML();
 					GWT.log(html, null);
 					noteTxt.setHTML(html + "<br/>" + imgHtml);
+
+				} else if (result.startsWith("<pre>image=")
+						|| result.startsWith("<PRE>image=")) {
+					int idxLast = result.indexOf("</");
+					String image = result.substring("<pre>image=".length(),
+							idxLast);
+					String imgHtml = "<img src='" + image + "'/>";
+					String html = noteTxt.getHTML();
+
+					GWT.log(imgHtml, null);
+					noteTxt.setHTML(html + "<br/>" + imgHtml);
+
 				} else {
 					ErrorDialog.showInfo("Failed to upload image");
 				}
