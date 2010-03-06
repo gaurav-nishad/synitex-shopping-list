@@ -196,6 +196,18 @@ public class EmailPanel extends Composite {
 			public void onChange(ChangeEvent event) {
 				String fileName = fu.getFilename();
 				if (fileName != null && !"".equals(fileName)) {
+
+					fileName = fileName.toLowerCase();
+
+					if (!fileName.endsWith(".jpeg")
+							&& !fileName.endsWith(".jpg")
+							&& !fileName.endsWith(".png")) {
+
+						ErrorDialog
+								.showInfo("Only image files can be inserted to email");
+						return;
+					}
+
 					formPanel.submit();
 				}
 			}
